@@ -1,0 +1,7 @@
+norm.sh
+test.c
+a.out
+*.o
+libft.a
+*.so
+*.a
