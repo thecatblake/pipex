@@ -75,6 +75,8 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
+	if (access(argv[1], R_OK) != 0)
+		return (write(1, "The first arugment must be readable.\n", 38), 1);
 	pipe(fields);
 	pid = fork();
 	if (pid == 0)
