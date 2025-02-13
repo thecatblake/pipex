@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cmd.h                                              :+:      :+:    :+:   */
+/*   validate.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkaga     <k222ryousuke@gmail.com   >      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/12 03:46:01 by rkaga             #+#    #+#             */
-/*   Updated: 2025/02/12 03:46:01 by rkaga            ###   ########.fr       */
+/*   Created: 2025/02/14 05:07:31 by rkaga             #+#    #+#             */
+/*   Updated: 2025/02/14 05:07:31 by rkaga            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CMD_H
-# define CMD_H
+#ifndef VALIDATE_H
+# define VALIDATE_H
 
-char	*get_executable(char *bin, char *path);
-int	execute_cmd(char *cmd, char **environ);
+int	is_executable(char *cmd, char **environ);
+int	is_readable(char *file);
 
 #endif

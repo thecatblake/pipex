@@ -2,7 +2,7 @@ NAME=pipex
 CC=cc
 LIBFT=libft/libft.a
 CFLAGS= -Wall -Wextra -Werror -g
-SRCS=main.c env.c cmd.c
+SRCS=main.c env.c cmd.c validate.c
 OBJS=$(SRCS:.c=.o)
 
 $(NAME): $(LIBFT) $(OBJS)
