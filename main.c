@@ -68,15 +68,12 @@ int	check_args(int argc, char **argv)
 	int	flag;
 
 	i = 1;
-	if (!is_readable(argv[i]))
+	if (!is_readable(argv[++i]))
 		return (1);
 	i++;
 	while (i < argc - 1)
-	{
-		if (!is_executable(argv[i], environ))
+		if (!is_executable(argv[++i], environ))
 			flag = 2;
-		i++;
-	}
 	if (i == 2)
 		return (3);
 	if (access(argv[i], W_OK) != 0)
@@ -91,6 +88,20 @@ int	check_args(int argc, char **argv)
 	return (flag);
 }
 
+int	validate_args(int argc, char **argv)
+{
+	int	arg_error;
+
+	arg_error = check_args(argc, argv);
+	if (arg_error == 1)
+		return (write(2, "File error.\n", 13), 1);
+	else if (arg_error == 2)
+		write(2, "command not found\n", 18);
+	else if (argc == 3)
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	int		fields[2];
@@ -100,13 +111,9 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 		return (0);
-	arg_error = check_args(argc, argv);
-	if (arg_error == 1)
-		return (write(2, "File error.\n", 13), 1);
-	else if (arg_error == 2)
-		write(2, "command not found\n", 18);
-	else if (argc == 3)
-		return (1);
+	arg_error = validate_args(argc, argv);
+	if (arg_error != 0)
+		return (arg_error);
 	pipe(fields);
 	pid = fork();
 	if (pid == 0)

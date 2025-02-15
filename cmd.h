@@ -14,6 +14,6 @@
 # define CMD_H
 
 char	*get_executable(char *bin, char *path);
-int	execute_cmd(char *cmd, char **environ);
+int		execute_cmd(char *cmd, char **environ);
 
 #endif
