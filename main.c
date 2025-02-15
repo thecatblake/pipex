@@ -68,13 +68,12 @@ int	check_args(int argc, char **argv)
 	int	flag;
 
 	i = 1;
-	if (!is_readable(argv[++i]))
+	if (!is_readable(argv[i++]))
 		return (1);
-	i++;
 	while (i < argc - 1)
-		if (!is_executable(argv[++i], environ))
+		if (!is_executable(argv[i++], environ))
 			flag = 2;
-	if (i == 2)
+	if (argc == 2)
 		return (3);
 	if (access(argv[i], W_OK) != 0)
 	{
@@ -97,7 +96,7 @@ int	validate_args(int argc, char **argv)
 		return (write(2, "File error.\n", 13), 1);
 	else if (arg_error == 2)
 		write(2, "command not found\n", 18);
-	else if (argc == 3)
+	else if (arg_error == 3)
 		return (1);
 	return (0);
 }
